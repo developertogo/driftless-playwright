@@ -90,15 +90,14 @@ Run the showcase directly via:
 ```bash
 python demo/demo.py --gif
 ```
-
 ### The 6-Scene Narrative in demo.gif
 
 | Scene | Story Stage | What Happens in the Demo |
 | :--- | :--- | :--- |
-| **Scene 1** | **User Taps Cancel in Bank** | Inside [Apex Digital Bank](./sandbox_portal/server.py#L110) (`/bank`), user taps "Cancel Subscription" on StreamPulse Ultra 4K ($22.99/mo). |
-| **Scene 2** | **Headful Auth & Iris Takeover** | User authenticates in-view on the merchant portal (`/merchant/login`). Iris takes over via Playwright CDP, maintaining the authenticated session in Zero-Trust mode. |
-| **Scene 3** | **Agentic Run on Novel Merchant (Agents Taking Actions for Agents)** | Iris encounters an unseen retention modal with a "Switch to Annual Billing ($199/yr) & Save 20%!" trap. The Guardrails Agent intercepts and blocks the trap button to protect the user from a $199 charge. The Execution Agent selects the exit survey and triggers `POST /api/subscription/cancel -> 200 OK`. |
-| **Scene 4** | **Verified & Reported Back to Bank** | VerificationJudge and PlaybookEvalGate confirm 200 OK mutation and DOM confirmation badge (`decision: PROMOTED`). The result reports back to the banking app: **Status: Canceled • $275.88 Annual Savings**. |
+| **Scene 1** | **User Taps Cancel in Bank** | Inside [Apex Digital Bank](./sandbox_portal/server.py#L110) (`/bank`), user spots the Price Hike Alert on StreamPulse Ultra 4K ($22.99/mo), taps "Cancel Subscription", and confirms via the in-app savings modal ("Save $275.88/yr"). |
+| **Scene 2** | **Headful Auth & Iris Takeover** | User authenticates in-view on the merchant portal (`/merchant/login`) via 1-click biometric Face ID. Iris takes over via Playwright CDP, maintaining the authenticated session in Zero-Trust mode. |
+| **Scene 3** | **Agentic Run on Novel Merchant (Agents Taking Actions for Agents)** | In-app execution displays live progress ("Accessing your account..." $\rightarrow$ "Cancelling your subscription..."). Iris encounters an unseen retention modal with a "Switch to Annual Billing ($199/yr) & Save 20%!" trap. The Guardrails Agent intercepts and blocks the trap button to protect the user from a $199 charge. The Execution Agent selects the exit survey and triggers `POST /api/subscription/cancel -> 200 OK`. |
+| **Scene 4** | **Verified & Reported Back to Bank** | Celebratory confetti screen displays 🎉 ("Cancellation successful • $275.88 Saved Per Year"). VerificationJudge and PlaybookEvalGate confirm 200 OK mutation and DOM confirmation badge (`decision: PROMOTED`). The result reports back to the banking app with monthly recurring spend reduced. |
 | **Scene 5** | **Closed-Loop Convergence into Playbook v2** | Iris compiles the winning trajectory into deterministic `Playbook_v2`. Subsequent runs execute on the retention flow with **0 LLM Tokens in ~1.1s** ($0 AI cost). |
 | **Scene 6** | **Fallback to Agent on Flow Drift** | When the merchant changes their selector (`v2_minor`), the deterministic path detects drift and seamlessly falls back to the Tier 1 Semantic Agent (`nomic-embed-text`), auto-healing in <95ms. |
 

@@ -18,7 +18,7 @@
     ],
     "compiled_playbook_version": 2,
     "llm_tokens_used": 148,
-    "duration_sec": 0.532,
+    "duration_sec": 0.53,
     "trace_zip_path": null,
     "screenshot_receipt_path": null,
     "network_mutations": [
@@ -29,7 +29,7 @@
         "latency_ms": 0.0
       }
     ],
-    "timestamp": 1792543805.3047218,
+    "timestamp": 1792607618.344257,
     "metadata": {
       "act": 3,
       "scenario": "agentic_trap_healed"
@@ -42,18 +42,16 @@
     "success": true,
     "failure_code": "NONE",
     "terminal_reward": 10.0,
-    "total_reward": 12.5,
+    "total_reward": 11.5,
     "network_confirmed": true,
     "dom_confirmed": true,
     "visual_confirmed": true,
     "verified": true,
     "confirmation_text": "Canceled",
-    "healed_steps": [
-      "step_healed_3_1"
-    ],
-    "compiled_playbook_version": 4,
-    "llm_tokens_used": 150,
-    "duration_sec": 1.73,
+    "healed_steps": [],
+    "compiled_playbook_version": null,
+    "llm_tokens_used": 0,
+    "duration_sec": 1.056,
     "trace_zip_path": null,
     "screenshot_receipt_path": null,
     "network_mutations": [
@@ -64,7 +62,7 @@
         "latency_ms": 0.0
       }
     ],
-    "timestamp": 1792543807.806311,
+    "timestamp": 1792607620.699033,
     "metadata": {
       "act": 5,
       "scenario": "compiled_playbook_v2"
@@ -88,7 +86,7 @@
     ],
     "compiled_playbook_version": null,
     "llm_tokens_used": 0,
-    "duration_sec": 1.078,
+    "duration_sec": 1.062,
     "trace_zip_path": null,
     "screenshot_receipt_path": null,
     "network_mutations": [
@@ -99,60 +97,10 @@
         "latency_ms": 0.0
       }
     ],
-    "timestamp": 1792543808.953423,
+    "timestamp": 1792607621.852166,
     "metadata": {
       "act": 6,
       "scenario": "agent_fallback_drift"
-    }
-  },
-  {
-    "run_id": "req_savings_01",
-    "merchant_id": "streampulse",
-    "workflow_type": "bill_savings",
-    "success": true,
-    "failure_code": "NONE",
-    "terminal_reward": 10.0,
-    "total_reward": 10.0,
-    "network_confirmed": true,
-    "dom_confirmed": true,
-    "visual_confirmed": true,
-    "verified": false,
-    "confirmation_text": "Status: Active (Savings Applied -$5.00/mo)",
-    "healed_steps": [],
-    "compiled_playbook_version": null,
-    "llm_tokens_used": 0,
-    "duration_sec": 0.0,
-    "trace_zip_path": null,
-    "screenshot_receipt_path": null,
-    "network_mutations": [],
-    "timestamp": 1792543862.589578,
-    "metadata": {
-      "action_type": "BILL_SAVINGS"
-    }
-  },
-  {
-    "run_id": "req_plan_01",
-    "merchant_id": "streampulse",
-    "workflow_type": "change_plan",
-    "success": true,
-    "failure_code": "NONE",
-    "terminal_reward": 10.0,
-    "total_reward": 10.0,
-    "network_confirmed": true,
-    "dom_confirmed": true,
-    "visual_confirmed": true,
-    "verified": false,
-    "confirmation_text": "Status: Active (Basic - $9.99/mo)",
-    "healed_steps": [],
-    "compiled_playbook_version": null,
-    "llm_tokens_used": 0,
-    "duration_sec": 0.0,
-    "trace_zip_path": null,
-    "screenshot_receipt_path": null,
-    "network_mutations": [],
-    "timestamp": 1792543863.1641011,
-    "metadata": {
-      "action_type": "CHANGE_PLAN"
     }
   },
   {
@@ -175,7 +123,7 @@
     "trace_zip_path": null,
     "screenshot_receipt_path": null,
     "network_mutations": [],
-    "timestamp": 1792545454.208232,
+    "timestamp": 1792607666.798679,
     "metadata": {
       "action_type": "SWAP_VIRTUAL_CARD"
     }
@@ -199,7 +147,7 @@
     ],
     "compiled_playbook_version": null,
     "llm_tokens_used": 430,
-    "duration_sec": 1.325,
+    "duration_sec": 1.208,
     "trace_zip_path": null,
     "screenshot_receipt_path": null,
     "network_mutations": [
@@ -210,7 +158,7 @@
         "latency_ms": 0.0
       }
     ],
-    "timestamp": 1792545456.272091,
+    "timestamp": 1792607668.6084712,
     "metadata": {
       "action_type": "CANCEL_SUBSCRIPTION"
     }
@@ -235,7 +183,7 @@
     "trace_zip_path": null,
     "screenshot_receipt_path": null,
     "network_mutations": [],
-    "timestamp": 1792545457.347113,
+    "timestamp": 1792607669.5502772,
     "metadata": {
       "action_type": "PAUSE_SUBSCRIPTION"
     }
@@ -260,7 +208,7 @@
     "trace_zip_path": null,
     "screenshot_receipt_path": null,
     "network_mutations": [],
-    "timestamp": 1792545468.649302,
+    "timestamp": 1792607681.774624,
     "metadata": {
       "action_type": "BILL_SAVINGS"
     }
@@ -285,7 +233,7 @@
     "trace_zip_path": null,
     "screenshot_receipt_path": null,
     "network_mutations": [],
-    "timestamp": 1792545469.152899,
+    "timestamp": 1792607682.251861,
     "metadata": {
       "action_type": "CHANGE_PLAN"
     }
