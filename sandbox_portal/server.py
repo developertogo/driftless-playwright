@@ -131,29 +131,43 @@ async def bank_app_page(canceled: Optional[str] = None):
     }}
     * {{ box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }}
     body {{ background: var(--bg); color: var(--text); padding: 24px; }}
-    .phone-wrapper {{ max-width: 680px; margin: 0 auto; background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }}
+    .phone-wrapper {{ max-width: 680px; margin: 0 auto; background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5); position: relative; }}
     .app-header {{ background: linear-gradient(135deg, #1e1b4b, #0f172a); padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }}
     .brand {{ font-size: 18px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }}
     .brand span {{ color: #38bdf8; font-size: 12px; background: rgba(56,189,248,0.15); padding: 3px 8px; border-radius: 9999px; border: 1px solid rgba(56,189,248,0.3); }}
-    .account-summary {{ padding: 20px 24px; background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border); }}
+    .account-summary {{ padding: 20px 24px; background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }}
     .balance-label {{ font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }}
     .balance-val {{ font-size: 32px; font-weight: 800; color: #fff; margin-top: 4px; }}
     .content {{ padding: 24px; }}
     .section-title {{ font-size: 16px; font-weight: 700; color: #e5e7eb; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }}
     .sub-card {{ background: #1a2234; border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin-bottom: 16px; transition: all 0.2s; }}
     .sub-header {{ display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }}
-    .merchant-name {{ font-size: 16px; font-weight: 700; color: #fff; }}
+    .merchant-name {{ font-size: 16px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }}
     .merchant-subtext {{ font-size: 13px; color: var(--text-muted); margin-top: 2px; }}
     .sub-price {{ font-size: 18px; font-weight: 800; color: #38bdf8; }}
     .badge {{ display: inline-block; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600; }}
     .badge-active {{ background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }}
     .badge-canceled {{ background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }}
+    .badge-pricehike {{ background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); font-size: 11px; padding: 2px 8px; border-radius: 9999px; }}
+    .badge-save {{ background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 11px; padding: 2px 8px; border-radius: 9999px; }}
     .btn {{ display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all 0.2s; }}
     .btn-danger {{ background: #dc2626; color: #fff; }}
     .btn-danger:hover {{ background: #b91c1c; }}
     .btn-secondary {{ background: #1f2937; color: #d1d5db; border: 1px solid #374151; }}
     .btn-secondary:hover {{ background: #374151; }}
+    .btn-primary {{ background: #2563eb; color: #fff; }}
     
+    .insight-alert {{ background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-size: 13px; color: #fca5a5; display: flex; align-items: center; justify-content: space-between; }}
+    .tab-bar {{ display: flex; gap: 12px; border-bottom: 1px solid var(--border); margin-bottom: 14px; padding-bottom: 6px; }}
+    .tab-item {{ font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 4px 8px; }}
+    .tab-item.active {{ color: #38bdf8; border-bottom: 2px solid #38bdf8; }}
+
+    /* In-App Confirmation Modal */
+    .modal-overlay {{ display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 1000; align-items: center; justify-content: center; }}
+    .modal-card {{ background: #1a2234; border: 1px solid #374151; border-radius: 16px; max-width: 420px; width: 90%; padding: 24px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }}
+    .modal-icon {{ width: 56px; height: 56px; background: #312e81; border-radius: 12px; margin: 0 auto 14px auto; display: flex; align-items: center; justify-content: center; font-size: 28px; }}
+    .savings-pill {{ display: inline-block; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); padding: 6px 14px; border-radius: 9999px; font-size: 13px; font-weight: 700; margin: 12px 0 20px 0; }}
+
     /* Iris In-App Modal / Drawer */
     .iris-banner {{ background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(56,189,248,0.15)); border: 1px solid rgba(99,102,241,0.4); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }}
     .iris-banner strong {{ color: #a5b4fc; }}
@@ -170,13 +184,21 @@ async def bank_app_page(canceled: Optional[str] = None):
         🏦 Apex Digital Bank <span>IRIS CONNECTED</span>
       </div>
       <div style="font-size: 13px; color: var(--text-muted);">
-        Alex Chen
+        Alex Chen &bull; Checking *0621
       </div>
     </div>
     
     <div class="account-summary">
-      <div class="balance-label">Checking Account (•••• 8912)</div>
-      <div class="balance-val">$8,452.19</div>
+      <div>
+        <div class="balance-label">Checking Account (*0621)</div>
+        <div class="balance-val">$8,452.19</div>
+      </div>
+      <div style="text-align: right;">
+        <span style="font-size: 12px; color: var(--text-muted);">Monthly Recurring:</span>
+        <div style="font-size: 18px; font-weight: 700; color: {'#34d399' if is_canceled else '#f87171'};">
+          {'$156.99' if is_canceled else '$179.98'} / mo
+        </div>
+      </div>
     </div>
     
     <div class="content">
@@ -189,14 +211,17 @@ async def bank_app_page(canceled: Optional[str] = None):
       </div>
       
       <div class="section-title">
-        <span>Active Subscriptions & Recurring Bills (2)</span>
+        <span>Tracked Recurring Bills & Subscriptions (3)</span>
       </div>
       
       <!-- Subscription 1: StreamPulse -->
       <div class="sub-card" id="card-streampulse">
         <div class="sub-header">
           <div>
-            <div class="merchant-name">StreamPulse Ultra 4K</div>
+            <div class="merchant-name">
+              ⚡ StreamPulse Ultra 4K
+              {"" if is_canceled else '<span class="badge-pricehike">🔥 Price Hike Alert</span>'}
+            </div>
             <div class="merchant-subtext">Next billing: Nov 1, 2026 &bull; Payment: Visa •••• 1111</div>
           </div>
           <div style="text-align: right;">
@@ -204,9 +229,24 @@ async def bank_app_page(canceled: Optional[str] = None):
             <span class="badge {badge_class}" id="bank-status-badge">{status_text}</span>
           </div>
         </div>
+
+        <div class="tab-bar">
+          <div class="tab-item active">Manage</div>
+          <div class="tab-item">History (Oct $22.99 &bull; Sep $19.99)</div>
+          <div class="tab-item">Insights</div>
+        </div>
+
+        {"" if is_canceled else """
+        <div class="insight-alert" id="price-hike-banner">
+          <div>
+            <strong>⚠️ Silent Price Hike:</strong> Increased from $19.99 to $22.99/mo (+15%).
+            <div style="color: #34d399; font-size: 12px; margin-top: 2px;">Cancel to save $275.88 per year.</div>
+          </div>
+        </div>
+        """}
         
         <div id="bank-action-buttons" style="display: {'none' if is_canceled else 'flex'}; gap: 10px; margin-top: 14px;">
-          <button id="btn-bank-cancel" class="btn btn-danger" onclick="initiateIrisCancellation()">
+          <button id="btn-bank-cancel" class="btn btn-danger" onclick="openCancelModal()">
             ❌ Cancel Subscription
           </button>
           <a href="/billing?version=v1" class="btn btn-secondary">
@@ -229,11 +269,28 @@ async def bank_app_page(canceled: Optional[str] = None):
         </div>
       </div>
 
-      <!-- Subscription 2: CloudStorage Pro -->
+      <!-- Subscription 2: AT&T Fiber -->
       <div class="sub-card">
         <div class="sub-header">
           <div>
-            <div class="merchant-name">CloudStorage Pro</div>
+            <div class="merchant-name">
+              📶 AT&T Fiber Internet
+              <span class="badge-save">Save $144/yr</span>
+            </div>
+            <div class="merchant-subtext">Due in 2 days &bull; Visa •••• 1111</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="sub-price">$124.00 / mo</div>
+            <span class="badge badge-active">Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subscription 3: CloudStorage Pro -->
+      <div class="sub-card">
+        <div class="sub-header">
+          <div>
+            <div class="merchant-name">☁️ CloudStorage Pro</div>
             <div class="merchant-subtext">Next billing: Nov 14, 2026 &bull; Driftless-Playwright Virtual Card</div>
           </div>
           <div style="text-align: right;">
@@ -244,10 +301,38 @@ async def bank_app_page(canceled: Optional[str] = None):
       </div>
       
     </div>
+
+    <!-- In-App Cancel Confirmation Modal (Inspired by MP4 00:51) -->
+    <div id="bank-cancel-modal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-icon">⚡</div>
+        <h2 style="font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px;">Cancel StreamPulse Ultra 4K</h2>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.4;">
+          We can help you cancel your subscription. You'll need your login credentials to authenticate.
+        </p>
+        <div class="savings-pill">💰 Save $275.88 per year</div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <button id="btn-modal-confirm-cancel" class="btn btn-danger" style="width: 100%; padding: 12px; font-size: 14px;" onclick="confirmIrisCancel()">
+            ❌ Cancel StreamPulse
+          </button>
+          <button class="btn btn-secondary" style="width: 100%;" onclick="closeCancelModal()">
+            Keep Subscription
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
   
   <script>
-    function initiateIrisCancellation() {{
+    function openCancelModal() {{
+      document.getElementById('bank-cancel-modal').style.display = 'flex';
+    }}
+    function closeCancelModal() {{
+      document.getElementById('bank-cancel-modal').style.display = 'none';
+    }}
+    function confirmIrisCancel() {{
+      closeCancelModal();
       const tracker = document.getElementById('iris-progress-tracker');
       const actionBtns = document.getElementById('bank-action-buttons');
       actionBtns.style.display = 'none';
@@ -260,8 +345,130 @@ async def bank_app_page(canceled: Optional[str] = None):
       `;
       setTimeout(() => {{
         window.location.href = '/merchant/login?from_bank=1';
-      }}, 800);
+      }}, 600);
     }}
+  </script>
+</body>
+</html>"""
+    return HTMLResponse(content=html)
+
+
+@app.get("/bank/progress", response_class=HTMLResponse)
+async def bank_progress_page(stage: Optional[str] = "accessing"):
+    is_success = (stage == "success")
+    is_cancelling = (stage == "cancelling")
+    
+    title = "Cancellation successful" if is_success else ("Cancelling your subscription" if is_cancelling else "Accessing your account")
+    subtitle = (
+        "You will no longer be paying for StreamPulse Ultra 4K."
+        if is_success
+        else ("Please hold on as Iris navigates the cancellation flow and handles retention traps."
+              if is_cancelling
+              else "We're accessing your merchant account in order to cancel the subscription. This only takes a minute.")
+    )
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apex Bank • {title}</title>
+  <style>
+    :root {{
+      --bg: #0b0f19;
+      --card: #111827;
+      --border: #1f2937;
+      --primary: #3b82f6;
+      --success: #10b981;
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+    }}
+    * {{ box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }}
+    body {{ background: var(--bg); color: var(--text); padding: 24px; min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }}
+    .phone-wrapper {{ max-width: 480px; width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 36px 28px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.6); position: relative; z-index: 10; }}
+    .merchant-logo-box {{ width: 72px; height: 72px; background: #1e1b4b; border: 2px solid #6366f1; border-radius: 18px; margin: 0 auto 24px auto; display: flex; align-items: center; justify-content: center; font-size: 34px; box-shadow: 0 8px 24px rgba(99,102,241,0.3); }}
+    .title {{ font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 10px; }}
+    .subtitle {{ font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 28px; padding: 0 12px; }}
+    
+    /* Circular Spinner */
+    .spinner {{ width: 56px; height: 56px; border: 4px solid rgba(56, 189, 248, 0.2); border-top-color: #38bdf8; border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 24px auto; }}
+    @keyframes spin {{ to {{ transform: rotate(360deg); }} }}
+
+    /* Success checkmark */
+    .success-icon {{ width: 68px; height: 68px; background: rgba(16, 185, 129, 0.15); border: 2px solid #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; color: #34d399; margin: 0 auto 20px auto; }}
+    .savings-badge {{ background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; padding: 8px 18px; border-radius: 9999px; font-size: 14px; font-weight: 700; display: inline-block; margin-bottom: 24px; }}
+    .btn-return {{ display: block; width: 100%; padding: 14px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 10px; font-size: 15px; font-weight: 700; transition: all 0.2s; }}
+    .btn-return:hover {{ background: #1d4ed8; }}
+
+    /* Canvas Confetti */
+    canvas#confetti {{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }}
+  </style>
+</head>
+<body>
+  {f'<canvas id="confetti"></canvas>' if is_success else ''}
+
+  <div class="phone-wrapper">
+    <div class="merchant-logo-box">⚡</div>
+    
+    {f'''
+    <div class="success-icon" id="success-icon">✓</div>
+    ''' if is_success else '<div class="spinner"></div>'}
+
+    <div class="title" id="progress-title">{title}</div>
+    <div class="subtitle">{subtitle}</div>
+
+    {f'''
+    <div class="savings-badge" id="savings-badge">💰 $275.88 Saved Per Year</div>
+    <a href="/bank?canceled=1" id="btn-return-bank" class="btn-return">
+      Return to Bank Dashboard
+    </a>
+    ''' if is_success else f'''
+    <div style="font-size: 12px; color: #64748b; margin-top: 14px;">
+      ⚡ Powered by Driftless-Playwright Iris Autonomous Browser Agent
+    </div>
+    '''}
+  </div>
+
+  <script>
+    {"// Confetti particle engine" if is_success else ""}
+    {'''
+    const canvas = document.getElementById('confetti');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const pieces = [];
+      const colors = ['#f43f5e', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+      for (let i = 0; i < 90; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height * 0.7,
+          w: Math.random() * 8 + 4,
+          h: Math.random() * 8 + 4,
+          vx: Math.random() * 4 - 2,
+          vy: Math.random() * 3 + 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rot: Math.random() * 360
+        });
+      }
+      function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot * Math.PI / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += 3;
+          if (p.y > canvas.height) p.y = -10;
+        });
+        requestAnimationFrame(loop);
+      }
+      loop();
+    }
+    ''' if is_success else ''}
   </script>
 </body>
 </html>"""
@@ -317,11 +524,40 @@ async def merchant_login_page(from_bank: Optional[str] = "1"):
         <label>Password</label>
         <input type="password" id="login-password" name="password" value="{account['password_plain']}" required />
       </div>
+
+      <div id="btn-faceid-auth" style="background: rgba(255,255,255,0.06); border: 1px solid #374151; border-radius: 8px; padding: 10px; text-align: center; margin-bottom: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: #38bdf8;" onclick="triggerFaceID()">
+        <span style="font-size: 16px;">📲</span>
+        <span>1-Click Authenticate with Face ID</span>
+      </div>
+
       <button type="submit" id="btn-merchant-signin" class="btn">
         Sign In & Manage Account
       </button>
     </form>
+
+    <div id="faceid-popup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 999;">
+      <div style="background: #ffffff; color: #111827; border-radius: 20px; padding: 28px 24px; text-align: center; width: 180px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+        <div id="faceid-status-icon" style="font-size: 42px; margin-bottom: 8px;">👤</div>
+        <div id="faceid-status-text" style="font-size: 15px; font-weight: 700;">Face ID</div>
+      </div>
+    </div>
   </div>
+
+  <script>
+    function triggerFaceID() {{
+      const popup = document.getElementById('faceid-popup');
+      popup.style.display = 'flex';
+      setTimeout(() => {{
+        document.getElementById('faceid-status-icon').innerText = '✓';
+        document.getElementById('faceid-status-icon').style.color = '#10b981';
+        document.getElementById('faceid-status-text').innerText = 'Verified';
+      }}, 500);
+      setTimeout(() => {{
+        popup.style.display = 'none';
+        document.getElementById('btn-merchant-signin').click();
+      }}, 900);
+    }}
+  </script>
 </body>
 </html>"""
     return HTMLResponse(content=html)

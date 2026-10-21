@@ -158,23 +158,29 @@ async def run_demo(headed: bool = False, record_gif: bool = True):
         if recorder:
             await recorder.capture_frame(
                 page,
-                title="SCENE 1: User Taps Cancel in Banking App",
-                subtitle="Apex Digital Bank • StreamPulse Ultra 4K ($22.99/mo) Active",
-                highlight_selector="#btn-bank-cancel",
+                title="SCENE 1: Digital Banking App Bill Manager",
+                subtitle="Apex Digital Bank • StreamPulse Ultra 4K ($22.99/mo) Price Hike Alert",
+                highlight_selector="#card-streampulse",
                 highlight_color="#ef4444",
-                duration_ms=900
+                duration_ms=1000
             )
 
-        # User clicks cancel
+        # User clicks cancel on card -> In-app modal opens
         await page.click("#btn-bank-cancel")
         await asyncio.sleep(0.3)
         if recorder:
             await recorder.capture_frame(
                 page,
-                title="SCENE 1: Iris Session Handoff Initiated",
-                subtitle="In-view headful merchant session opening...",
-                duration_ms=700
+                title="SCENE 1: In-App Cancel Confirmation Modal",
+                subtitle="Modal: 'Cancel StreamPulse • Save $275.88 per year' (Login credentials required)",
+                highlight_selector="#btn-modal-confirm-cancel",
+                highlight_color="#ef4444",
+                duration_ms=1000
             )
+
+        # User confirms cancel in modal -> Handoff initiated
+        await page.click("#btn-modal-confirm-cancel")
+        await asyncio.sleep(0.4)
 
         # =========================================================================
         # SCENE 2: Headful Merchant Authentication & Iris Takeover
@@ -188,23 +194,49 @@ async def run_demo(headed: bool = False, record_gif: bool = True):
             await recorder.capture_frame(
                 page,
                 title="SCENE 2: Headful Merchant Authentication",
-                subtitle="StreamPulse 4K Login • User authenticates in view",
-                highlight_selector="#btn-merchant-signin",
-                highlight_color="#6366f1",
+                subtitle="StreamPulse 4K Login • User authenticates in view with credentials / Biometrics",
+                highlight_selector="#btn-faceid-auth",
+                highlight_color="#38bdf8",
+                duration_ms=900
+            )
+
+        # Simulate Biometric Face ID Authentication (matching video)
+        await page.evaluate("""() => {
+            const popup = document.getElementById('faceid-popup');
+            if (popup) {
+                popup.style.display = 'flex';
+                document.getElementById('faceid-status-icon').innerText = '✓';
+                document.getElementById('faceid-status-icon').style.color = '#10b981';
+                document.getElementById('faceid-status-text').innerText = 'Face ID Verified';
+            }
+        }""")
+        await asyncio.sleep(0.3)
+        if recorder:
+            await recorder.capture_frame(
+                page,
+                title="SCENE 2: 1-Click Biometric Authentication",
+                subtitle="Face ID Verified • Iris attaches to session via Playwright CDP (Zero-Trust)",
                 duration_ms=800
             )
+
+        # Hide popup and proceed with login
+        await page.evaluate("""() => {
+            const popup = document.getElementById('faceid-popup');
+            if (popup) popup.style.display = 'none';
+        }""")
+        await asyncio.sleep(0.1)
 
         # User submits login -> Iris captures authenticated session
         await page.click("#btn-merchant-signin")
         await page.wait_for_load_state("networkidle")
-        await asyncio.sleep(0.4)
+        await asyncio.sleep(0.3)
 
         if recorder:
             await recorder.capture_frame(
                 page,
                 title="SCENE 2: Iris Takes Over Authenticated Session",
                 subtitle="Playwright CDP session context maintained (Zero-Trust Mode)",
-                duration_ms=900
+                duration_ms=800
             )
 
         # =========================================================================
@@ -212,6 +244,21 @@ async def run_demo(headed: bool = False, record_gif: bool = True):
         # =========================================================================
         print("\n▶️  [SCENE 3] Iris Runs Agentically on Novel Merchant (Dark-Pattern Trap)")
         print("   Target: Agents taking actions for agents & blocking upsell traps.")
+
+        # Show In-App Automated Progress Screen (matching video 00:57 - 00:59)
+        await page.goto(f"{SERVER_URL}/bank/progress?stage=cancelling")
+        await asyncio.sleep(0.3)
+        if recorder:
+            await recorder.capture_frame(
+                page,
+                title="SCENE 3: In-App Iris Automated Execution Progress",
+                subtitle="Stage: Cancelling subscription • Iris navigating merchant retention flow",
+                duration_ms=900
+            )
+
+        # Iris loads merchant billing portal
+        await page.goto(f"{SERVER_URL}/billing?version=v2_dark_pattern&from_bank=1")
+        await asyncio.sleep(0.4)
         
         # 1. Supervisor Agent initiates exit
         await page.click("#open-retention-btn")
@@ -319,6 +366,20 @@ async def run_demo(headed: bool = False, record_gif: bool = True):
         ]
         gate_res = eval_gate.evaluate_and_promote(rec_agent, base_playbook=playbook_v1, healed_actions=healed_actions)
         print(f"   Eval Gate Decision: {gate_res.decision.value} (Compiled to Playbook v2)")
+
+        # Show Celebratory Confetti Screen (matching video 01:00 - 01:02!)
+        await page.goto(f"{SERVER_URL}/bank/progress?stage=success")
+        await asyncio.sleep(0.4)
+
+        if recorder:
+            await recorder.capture_frame(
+                page,
+                title="SCENE 4: Cancellation Successful (Confetti Celebration)",
+                subtitle="Celebratory Confetti • No further charges • $275.88 Annual Savings Confirmed",
+                highlight_selector="#btn-return-bank",
+                highlight_color="#10b981",
+                duration_ms=1200
+            )
 
         # Return to bank
         await page.goto(f"{SERVER_URL}/bank?canceled=1")
