@@ -1,0 +1,138 @@
+{
+  "playbook_id": "streampulse_v3",
+  "merchant_id": "streampulse",
+  "version": 3,
+  "dom_fingerprint": "dom_fp_streampulse_v1_v2_v3",
+  "success_count": 1,
+  "attempt_count": 1,
+  "avg_latency_sec": 1.95,
+  "steps": [
+    {
+      "step_id": "step_open_billing",
+      "intent": "Open billing management section",
+      "action_type": "click",
+      "action_value": null,
+      "locators": [
+        "role=button[name='Billing'i]",
+        "css=#nav-billing-link",
+        "xpath=//a[contains(., 'Billing')]"
+      ],
+      "signature": {
+        "tag": "a",
+        "text": "Billing & Plans",
+        "aria_role": "link",
+        "attributes": {
+          "id": "nav-billing-link"
+        },
+        "bbox_ratio": [
+          0.15,
+          0.08,
+          0.12,
+          0.04
+        ],
+        "visual_patch_phash": null,
+        "visual_patch_path": null
+      },
+      "post_condition": {
+        "url_contains": "/billing",
+        "dom_text_visible": [
+          "StreamPulse Ultra 4K",
+          "Active"
+        ],
+        "network_path_contains": null,
+        "network_status_in": [
+          200,
+          201,
+          204
+        ]
+      },
+      "is_commit_step": false
+    },
+    {
+      "step_id": "step_click_cancel",
+      "intent": "Initiate membership cancellation",
+      "action_type": "click",
+      "action_value": null,
+      "locators": [
+        "role=button[name='End My Subscription'i]",
+        "role=button[name='Cancel Membership'i]",
+        "css=#cancel-membership-btn",
+        "xpath=//section[contains(., 'Billing')]//button[contains(normalize-space(), 'Cancel Membership')]",
+        "bbox=[0.72, 0.45]"
+      ],
+      "signature": {
+        "tag": "button",
+        "text": "Cancel Membership",
+        "aria_role": "button",
+        "attributes": {
+          "id": "cancel-membership-btn",
+          "class": "btn btn-danger"
+        },
+        "bbox_ratio": [
+          0.72,
+          0.45,
+          0.18,
+          0.05
+        ],
+        "visual_patch_phash": null,
+        "visual_patch_path": null
+      },
+      "post_condition": {
+        "url_contains": null,
+        "dom_text_visible": [
+          "Wait! Don't leave",
+          "Tell us why you are leaving",
+          "Confirm Cancellation"
+        ],
+        "network_path_contains": null,
+        "network_status_in": [
+          200,
+          201,
+          204
+        ]
+      },
+      "is_commit_step": false
+    },
+    {
+      "step_id": "step_healed_3_1",
+      "intent": "Final cancellation confirmation",
+      "action_type": "click",
+      "action_value": null,
+      "locators": [
+        "role=button[name='Confirm Cancellation'i]",
+        "css=#confirm-cancel-btn",
+        "xpath=//button[contains(., 'Confirm Cancellation')]"
+      ],
+      "signature": {
+        "tag": "button",
+        "text": "Confirm Cancellation",
+        "aria_role": "button",
+        "attributes": {
+          "id": "confirm-cancel-btn"
+        },
+        "bbox_ratio": [
+          0.45,
+          0.6,
+          0.15,
+          0.05
+        ],
+        "visual_patch_phash": null,
+        "visual_patch_path": null
+      },
+      "post_condition": {
+        "url_contains": null,
+        "dom_text_visible": [
+          "Status: Canceled",
+          "Canceled"
+        ],
+        "network_path_contains": null,
+        "network_status_in": [
+          200,
+          201,
+          204
+        ]
+      },
+      "is_commit_step": true
+    }
+  ]
+}

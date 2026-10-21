@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+telemetry_output/*.zip
+telemetry_output/*.webm
+sessions/*.json
+!sessions/.gitkeep
+.portal.pid
+.portal.log
+.codegraph/
