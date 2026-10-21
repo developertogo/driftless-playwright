@@ -226,7 +226,6 @@ driftless-playwright/
 ├── README.md                   # System documentation & showcase GIF
 ├── HANDOFF.md                  # Complete architectural & technical specification
 ├── DESIGN_AND_ARCHITECTURE.md  # System design, state machines & o11y architecture
-├── ../NOTES.md                 # Detailed engineering notes & runbook (root level)
 ├── scripts/
 │   ├── start.sh                # Starts the sandbox portal & telemetry server (port 8000)
 │   └── stop.sh                 # Stops running sandbox portal instances

@@ -158,4 +158,3 @@ The Flight Recorder ([`TelemetryFlightRecorder`](./driftless_playwright/telemetr
 ## Related Documentation
 
 - **[README.md](./README.md):** Main project overview, quickstart, and interactive showcase demo.
-- **[../NOTES.md](../NOTES.md):** Comprehensive engineering notes, role mapping, and local runbooks.
